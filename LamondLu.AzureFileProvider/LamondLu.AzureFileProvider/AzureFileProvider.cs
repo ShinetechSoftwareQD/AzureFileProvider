@@ -66,7 +66,7 @@ namespace LamondLu.AzureFileProvider
 
         private CloudFileDirectory GetRootDirectory()
         {
-            var shareName = _setting.SharedName;
+            var shareName = _setting.ShareName;
             var storageAccount = CloudStorageAccount.Parse(_setting.ConnectionString);
             var fileClient = storageAccount.CreateCloudFileClient();
             var share = fileClient.GetShareReference(shareName);

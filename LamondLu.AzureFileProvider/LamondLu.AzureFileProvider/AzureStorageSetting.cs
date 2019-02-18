@@ -8,6 +8,6 @@ namespace LamondLu.AzureFileProvider
     {
         public string ConnectionString { get; set; }
 
-        public string SharedName { get; set; }
+        public string ShareName { get; set; }
     }
 }
