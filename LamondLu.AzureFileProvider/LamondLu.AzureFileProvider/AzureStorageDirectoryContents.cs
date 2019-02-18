@@ -8,16 +8,29 @@ namespace LamondLu.AzureFileProvider
 {
     public class AzureStorageDirectoryContents : IDirectoryContents
     {
-        public bool Exists => throw new NotImplementedException();
+        private List<IFileInfo> _listInfos;
+
+        public AzureStorageDirectoryContents(List<IFileInfo> listInfos)
+        {
+            _listInfos = listInfos;
+        }
+
+        public bool Exists
+        {
+            get
+            {
+                return true;
+            }
+        }
 
         public IEnumerator<IFileInfo> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _listInfos.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _listInfos.GetEnumerator();
         }
     }
 }

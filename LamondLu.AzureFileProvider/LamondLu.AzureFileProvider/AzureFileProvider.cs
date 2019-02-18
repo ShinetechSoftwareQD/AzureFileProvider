@@ -3,6 +3,8 @@ using Microsoft.Extensions.Primitives;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.File;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace LamondLu.AzureFileProvider
 {
@@ -17,12 +19,44 @@ namespace LamondLu.AzureFileProvider
 
         public IDirectoryContents GetDirectoryContents(string subpath)
         {
-            throw new NotImplementedException();
+            var rootDirectory = GetRootDirectory();
+
+            var folderName = subpath.Substring(1);
+            CloudFileDirectory folder = null;
+
+            if (string.IsNullOrWhiteSpace(folderName))
+            {
+                folder = rootDirectory;
+            }
+            else
+            {
+                folder = rootDirectory.GetDirectoryReference(folderName);
+            }
+
+            var files = new List<IFileInfo>();
+            foreach (var item in folder.ListFilesAndDirectoriesSegmentedAsync(new FileContinuationToken()).Result.Results)
+            {
+                if (item is CloudFile)
+                {
+                    var file = item as CloudFile;
+                    files.Add(new AzureFileInfo(file));
+                }
+                else if (item is CloudFileDirectory)
+                {
+                    var directory = item as CloudFileDirectory;
+                    files.Add(new AzureDirectoryInfo(directory));
+                }
+            }
+
+            return new AzureStorageDirectoryContents(files);
         }
 
         public IFileInfo GetFileInfo(string subpath)
         {
-            throw new NotImplementedException();
+            var rootDirectory = GetRootDirectory();
+            var file = rootDirectory.GetFileReference(subpath.Substring(1));
+
+            return new AzureFileInfo(file);
         }
 
         public IChangeToken Watch(string filter)
