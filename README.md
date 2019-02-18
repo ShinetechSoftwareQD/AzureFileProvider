@@ -20,7 +20,7 @@ A library to use Azure File Storage as File Provider in ASP.NET Core
 
 ```
 
-- Enable the AzureFileProvider in the <code>ConfigureService</code> method
+- Enable the AzureFileProvider in the <code>Configure</code> method
 
 ```
   public void Configure(IApplicationBuilder app, IHostingEnvironment env)
