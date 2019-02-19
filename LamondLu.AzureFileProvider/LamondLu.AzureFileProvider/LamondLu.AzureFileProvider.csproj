@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Lamond Lu</Authors>
+    <Product />
+    <Description>A library to allow developer to use Azure File Storage as the File Provider in the ASP.NET CORE</Description>
+    <RepositoryUrl>https://github.com/lamondlu/AzureFileProvider</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
