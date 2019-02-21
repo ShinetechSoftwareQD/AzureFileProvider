@@ -56,7 +56,7 @@ namespace LamondLu.AzureFileProvider
             var rootDirectory = GetRootDirectory();
             var file = rootDirectory.GetFileReference(subpath.Substring(1));
 
-            return new AzureFileInfo(file);
+            return new AzureFileContentInfo(file);
         }
 
         public IChangeToken Watch(string filter)

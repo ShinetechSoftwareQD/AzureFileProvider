@@ -7,13 +7,16 @@ using System.Text;
 
 namespace LamondLu.AzureFileProvider
 {
-    public class AzureFileInfo : IFileInfo
+    public class AzureFileContentInfo : IFileInfo
     {
         private CloudFile _file = null;
+        private MemoryStream _stream = new MemoryStream();
 
-        public AzureFileInfo(CloudFile file)
+        public AzureFileContentInfo(CloudFile file)
         {
             _file = file;
+            _file.DownloadRangeToStreamAsync(_stream, null, null).Wait();
+            _stream.Position = 0;
         }
 
         public bool Exists
@@ -28,7 +31,7 @@ namespace LamondLu.AzureFileProvider
         {
             get
             {
-                return _file.Properties.Length;
+                return _stream.Length;
             }
         }
 
@@ -67,7 +70,7 @@ namespace LamondLu.AzureFileProvider
 
         public Stream CreateReadStream()
         {
-            throw new NotImplementedException();
+            return _stream;
         }
     }
 }
