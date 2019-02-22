@@ -8,9 +8,11 @@
     <Description>A library to allow developer to use Azure File Storage as the File Provider in the ASP.NET CORE</Description>
     <RepositoryUrl>https://github.com/lamondlu/AzureFileProvider</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>v1.0.1
-- When load the content in one folder, there is no need to load every file into stream.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes>v1.0.2
+
+Use the Microsoft.Azure.Storage.File to replace the WindowsAzure.Storage.
+Thanks Edi Wang for the feedback</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
